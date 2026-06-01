@@ -1,0 +1,12 @@
+name = "saas-launch-kit"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+APP_NAME = "SaaS Launch Kit"
+ENVIRONMENT = "production"
+
+[[kv_namespaces]]
+binding = "DB"
+id = "d7f07a5445ae44d9b21fa7fb8f241c21"

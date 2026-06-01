@@ -1,0 +1,43 @@
+{
+  "extension_name": {
+    "message": "SaaS 启动套件",
+    "description": "扩展程序名称"
+  },
+  "extension_description": {
+    "message": "几天内构建你的 SaaS 产品，而不是几个月",
+    "description": "扩展程序描述"
+  },
+  "process_button": {
+    "message": "处理内容",
+    "description": "处理内容按钮文字"
+  },
+  "upgrade_button": {
+    "message": "升级到 Pro",
+    "description": "升级按钮文字"
+  },
+  "usage_format": {
+    "message": "今日已用 $1/$2 · 剩余 $3 次",
+    "description": "使用量格式",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" },
+      "3": { "content": "$3" }
+    }
+  },
+  "pro_unlimited": {
+    "message": "无限次处理",
+    "description": "Pro 用户显示的文字"
+  },
+  "error_generic": {
+    "message": "发生错误，请重试。",
+    "description": "通用错误消息"
+  },
+  "error_network": {
+    "message": "网络错误，请检查网络连接。",
+    "description": "网络错误消息"
+  },
+  "error_limit_reached": {
+    "message": "今日次数已用完，升级到 Pro 获取无限次数。",
+    "description": "次数用尽消息"
+  }
+}

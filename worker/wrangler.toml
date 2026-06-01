@@ -1,0 +1,25 @@
+name = "saas-launch-kit-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment Variables (set in Cloudflare Dashboard or .dev.vars)
+# CREEM_API_KEY=your_creem_api_key
+# CREEM_WEBHOOK_SECRET=your_webhook_secret
+# CREEM_PRODUCT_ID=your_product_id
+# AI_API_KEY=your_ai_api_key
+# CANONICAL_DOMAIN=yourdomain.com
+
+[vars]
+APP_NAME = "SaaS Launch Kit"
+DEFAULT_LANGUAGE = "en"
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "DB"
+id = "your-kv-namespace-id"
+
+# Routes (uncomment and configure for custom domain)
+# [[routes]]
+# pattern = "api.yourdomain.com"
+# zone_name = "yourdomain.com"

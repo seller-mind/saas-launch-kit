@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Launch Kit - Ship Your SaaS in Days, Not Months</title>
+  <meta name="description" content="The complete starter kit for Chinese indie developers building global SaaS products. Chrome Extension + Cloudflare Worker + Creem Payment + SEO.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="SaaS Launch Kit - Ship Your SaaS in Days, Not Months">
+  <meta property="og:description" content="The complete starter kit for Chinese indie developers building global SaaS products.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://saas-launch-kit.haimozhouqiu.workers.dev/og-image.jpg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       CSS Variables & Reset
+       ============================================================ */
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --accent: #a855f7;
+      --success: #10b981;
+      --bg: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-card: #1a1a24;
+      --text: #ffffff;
+      --text-secondary: #a1a1aa;
+      --border: rgba(255,255,255,0.1);
+      --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       Utility Classes
+       ============================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ============================================================
+       Navigation
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* ============================================================
+       Hero Section
+       ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 100px;
+      font-size: 14px;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-top: 80px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       Features Section
+       ============================================================ */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       Tech Stack Section
+       ============================================================ */
+    .tech-section {
+      background: var(--bg-secondary);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .tech-item {
+      padding: 24px;
+    }
+
+    .tech-logo {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .tech-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .tech-item p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       Pricing Section
+       ============================================================ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .pricing-card.popular {
+      border-color: var(--primary);
+      box-shadow: 0 0 60px rgba(99, 102, 241, 0.2);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      background: var(--gradient);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .pricing-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 800;
+    }
+
+    .pricing-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-features .check {
+      color: var(--success);
+      font-size: 18px;
+    }
+
+    .pricing-features .cross {
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    .pricing-cta {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ============================================================
+       FAQ Section
+       ============================================================ */
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+    }
+
+    .faq-icon {
+      font-size: 24px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      padding-bottom: 24px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       CTA Section
+       ============================================================ */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cta-content {
+      text-align: center;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .cta-content p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--gradient);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .footer-brand-name {
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta .btn-secondary {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 32px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SaaS Launch Kit",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "description": "Complete starter kit for indie developers building global SaaS products. Chrome Extension + Cloudflare Worker + Creem Payment + SEO.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "99",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "199",
+        "priceCurrency": "USD"
+      }
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "Haimo Tech"
+    }
+  }
+  </script>
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">🚀</div>
+        <span>SaaS Launch Kit</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tech">Tech Stack</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://github.com" class="btn btn-secondary">GitHub</a>
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-badge">
+        🚀 Built for <span>Chinese Developers</span> Going Global
+      </div>
+      <h1>Ship Your SaaS in <span class="gradient-text">Days, Not Months</span></h1>
+      <p class="hero-subtitle">
+        The complete starter kit for building and launching global SaaS products. 
+        Chrome Extension + Cloudflare Worker + Creem Payment — all you need to go from zero to revenue.
+      </p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn btn-primary">
+          Get Started — $99
+          <span>→</span>
+        </a>
+        <a href="https://github.com" class="btn btn-secondary">
+          View on GitHub
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">$99</div>
+          <div class="stat-label">Starting Price</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">TypeScript</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">∞</div>
+          <div class="stat-label">Days to MVP</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Everything You Need</span>
+        <h2 class="section-title">Ship <span class="gradient-text">Complete Products</span></h2>
+        <p class="section-desc">
+          Not just code snippets — a production-ready foundation with payment, SEO, and internationalization built in.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>Chrome Extension MV3</h3>
+          <p>Modern Manifest V3 extension with popup, content scripts, and background service worker. esbuild-powered build system included.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3>Cloudflare Worker API</h3>
+          <p>Serverless API with CORS, rate limiting, KV storage, and webhook handling. Deploys in seconds, runs at the edge.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Creem Payment</h3>
+          <p>Complete payment integration with checkout sessions, webhook verification, and subscription management.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Usage & Limits</h3>
+          <p>Free/Pro tier system with daily limits, usage tracking, and seamless upgrade prompts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>SEO Ready</h3>
+          <p>robots.txt, sitemap.xml, OG images, and Schema markup out of the box. Start ranking from day one.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>i18n Support</h3>
+          <p>Built-in support for English, Chinese, and Japanese. Easily extend to more languages.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚖️</div>
+          <h3>Legal Pages</h3>
+          <p>Privacy Policy, Terms of Service, and DMCA templates ready to customize and deploy.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Landing Page</h3>
+          <p>Professional, conversion-optimized landing page template. Mobile-responsive and fast-loading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section id="tech" class="section tech-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Tech Stack</span>
+        <h2 class="section-title">Battle-Tested <span class="gradient-text">Technologies</span></h2>
+        <p class="section-desc">
+          Proven tools used by thousands of developers worldwide.
+        </p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-logo">🌐</div>
+          <h4>Cloudflare</h4>
+          <p>Edge Computing</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-logo">🦕</div>
+          <h4>TypeScript</h4>
+          <p>Type Safety</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-logo">🔧</div>
+          <h4>esbuild</h4>
+          <p>Fast Bundling</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-logo">💳</div>
+          <h4>Creem</h4>
+          <p>Payments</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-logo">🤖</div>
+          <h4>AI APIs</h4>
+          <p>AI Integration</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-logo">📱</div>
+          <h4>Chrome</h4>
+          <p>Extension</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Simple, <span class="gradient-text">Transparent Pricing</span></h2>
+        <p class="section-desc">
+          One-time payment, lifetime access. No subscriptions, no surprises.
+        </p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-name">Starter</div>
+            <div class="pricing-price">$99</div>
+            <p class="pricing-desc">Perfect for your first SaaS project</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Chrome Extension template</li>
+            <li><span class="check">✓</span> Cloudflare Worker API</li>
+            <li><span class="check">✓</span> Creem payment integration</li>
+            <li><span class="check">✓</span> Free/Pro tier system</li>
+            <li><span class="check">✓</span> SEO setup</li>
+            <li><span class="check">✓</span> i18n (EN/ZH/JA)</li>
+            <li><span class="check">✓</span> Legal page templates</li>
+            <li><span class="check">✓</span> Documentation</li>
+          </ul>
+          <div class="pricing-cta">
+            <a href="https://creem.io/checkout/prod_6LpO4sd1iUR0VMLfZXZg4f" class="btn btn-primary" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">Get Starter — $99</a>
+          </div>
+        </div>
+        <div class="pricing-card popular">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <div class="pricing-name">Pro</div>
+            <div class="pricing-price">$199</div>
+            <p class="pricing-desc">Everything + Landing page template</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Everything in Starter</li>
+            <li><span class="check">✓</span> Full Landing page</li>
+            <li><span class="check">✓</span> Conversion-optimized CTAs</li>
+            <li><span class="check">✓</span> Mobile responsive</li>
+            <li><span class="check">✓</span> FAQ section</li>
+            <li><span class="check">✓</span> Tech stack showcase</li>
+            <li><span class="check">✓</span> Pricing comparison</li>
+            <li><span class="check">✓</span> Priority support</li>
+          </ul>
+          <div class="pricing-cta">
+            <a href="https://creem.io/checkout/prod_5dISibto5tNwH6d95VGHrZ" class="btn btn-primary" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">Get Pro — $199</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section tech-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions? <span class="gradient-text">Answered.</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button class="faq-question">
+            Why not just use Stripe and Vercel like everyone else?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Stripe and Vercel are great for US-based developers. But for Chinese developers, Creem offers easier setup, no business entity required, and better support for international payments. Cloudflare Workers give you more control and better pricing than Vercel for API workloads.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Do I need a business entity to use this?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Creem allows individual sellers without requiring a business entity. You can accept payments as a sole proprietor in most countries.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How long does it take to build a product?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>With this template, most developers can have a working MVP in 2-3 days. The Chrome Extension, API, and payment integration are already done — you just customize the content and add your AI logic.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I use my own AI provider?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. The template is designed to be provider-agnostic. Replace the AI processing function with your OpenAI, Claude, or any other API. We provide examples for each.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What about support?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Pro users get priority email support. Starter users can ask questions via GitHub Issues. We also have comprehensive documentation covering every aspect of the template.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Do I get updates?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! We continuously improve the template based on user feedback and best practices. Updates are free for all purchasers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container cta-content">
+      <h2>Ready to <span class="gradient-text">Ship Your SaaS?</span></h2>
+      <p>Stop spending weeks on boilerplate. Start building your product today.</p>
+      <a href="#pricing" class="btn btn-primary">
+        Get Started Now
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">🚀</div>
+        <span class="footer-brand-name">Haimo Tech</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Haimo Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const wasActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        // Toggle clicked item
+        if (!wasActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(10, 10, 15, 0.95)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 15, 0.8)';
+      }
+    });
+  </script>
+</body>
+</html>

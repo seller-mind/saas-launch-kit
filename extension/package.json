@@ -1,0 +1,15 @@
+{
+  "name": "saas-launch-kit-extension",
+  "version": "1.0.0",
+  "description": "Chrome Extension template for SaaS Launch Kit - MV3 with TypeScript",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:watch": "node scripts/build.js --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "typescript": "^5.4.0"
+  }
+}

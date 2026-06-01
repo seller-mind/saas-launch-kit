@@ -1,0 +1,43 @@
+{
+  "extension_name": {
+    "message": "SaaS Launch Kit",
+    "description": "The name of the extension"
+  },
+  "extension_description": {
+    "message": "Build your SaaS product in days, not months",
+    "description": "The description of the extension"
+  },
+  "process_button": {
+    "message": "Process Content",
+    "description": "Button text to process content"
+  },
+  "upgrade_button": {
+    "message": "Upgrade to Pro",
+    "description": "Button text to upgrade"
+  },
+  "usage_format": {
+    "message": "$1/$2 used today · $3 remaining",
+    "description": "Usage counter format",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" },
+      "3": { "content": "$3" }
+    }
+  },
+  "pro_unlimited": {
+    "message": "Unlimited processing",
+    "description": "Text shown for pro users"
+  },
+  "error_generic": {
+    "message": "An error occurred. Please try again.",
+    "description": "Generic error message"
+  },
+  "error_network": {
+    "message": "Network error. Please check your connection.",
+    "description": "Network error message"
+  },
+  "error_limit_reached": {
+    "message": "Daily limit reached. Upgrade to Pro for unlimited access.",
+    "description": "Limit reached message"
+  }
+}

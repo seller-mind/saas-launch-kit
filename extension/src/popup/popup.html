@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>__EXTENSION_NAME__</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="logo">
+        <span class="logo-icon">🚀</span>
+        <span class="logo-text">__EXTENSION_NAME__</span>
+      </div>
+      <span id="plan-badge" class="plan-badge free">Free</span>
+    </header>
+
+    <!-- Usage Section -->
+    <section class="usage-section">
+      <div class="usage-bar">
+        <div id="usage-fill" class="usage-fill"></div>
+      </div>
+      <p id="usage-text" class="usage-text">Loading...</p>
+    </section>
+
+    <!-- Status Section -->
+    <section class="status-section">
+      <p id="current-page-text" class="status-text">Checking page...</p>
+      <button id="process-btn" class="primary-btn" disabled>
+        <span class="btn-icon">✨</span>
+        Process Content
+      </button>
+    </section>
+
+    <!-- Verify Section -->
+    <section class="verify-section">
+      <a id="verify-link" href="#" class="verify-link">Already Pro? Verify</a>
+      <div id="verify-form" class="verify-form" style="display: none;">
+        <input type="email" id="verify-email" placeholder="your@email.com" class="email-input">
+        <p id="verify-error" class="error-text"></p>
+        <div class="verify-buttons">
+          <button id="verify-cancel" class="secondary-btn">Cancel</button>
+          <button id="verify-submit" class="primary-btn small">Verify</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upgrade CTA -->
+    <section class="upgrade-section">
+      <p id="plan-text" class="plan-description">Upgrade to Pro for unlimited access</p>
+      <button id="upgrade-btn" class="upgrade-btn">
+        <span class="btn-icon">⭐</span>
+        Upgrade to Pro
+      </button>
+    </section>
+
+    <!-- Settings -->
+    <section class="settings-section">
+      <label class="setting-row">
+        <span>Language</span>
+        <select id="setting-language" class="setting-select">
+          <option value="en">English</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="ja">日本語</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <button id="clear-data-btn" class="clear-btn">Clear All Data</button>
+      <a href="#" id="settings-link" class="footer-link">Settings</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
